@@ -12,7 +12,7 @@ import ru.bondarmih.recipeparser.service.DocumentProvider;
 @Component
 public class WebDocumentProvider implements DocumentProvider {
     @Override
-    public Document getDocument() {
+    public Document getDocument(String path) {
         return null;
     }
 }

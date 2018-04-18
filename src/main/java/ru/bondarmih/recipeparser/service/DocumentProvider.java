@@ -7,6 +7,6 @@ import org.jsoup.nodes.Document;
  */
 public interface DocumentProvider {
 
-    Document getDocument();
+    Document getDocument(String path);
 
 }
