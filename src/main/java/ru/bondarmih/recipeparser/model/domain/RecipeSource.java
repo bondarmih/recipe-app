@@ -1,5 +1,7 @@
 package ru.bondarmih.recipeparser.model.domain;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -8,14 +10,11 @@ import javax.persistence.Table;
  * Created by bondarm on 17.04.18.
  */
 
-@Entity
-@Table(name = "rp_recipe_source")
+@Document
 public class RecipeSource extends BaseEntity {
 
-    @Column(name = "path")
     private String path;
 
-    @Column(name = "processed")
     private Boolean processed;
 
     public String getPath() {

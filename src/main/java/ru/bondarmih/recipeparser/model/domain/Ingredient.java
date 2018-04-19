@@ -1,8 +1,5 @@
 package ru.bondarmih.recipeparser.model.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by bondarm on 18.04.18.
  */

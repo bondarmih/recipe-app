@@ -1,12 +1,20 @@
 package ru.bondarmih.recipeparser.model.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import java.util.List;
 
 /**
  * Created by bondarm on 18.04.18.
  */
+
+@Document(collection = "recipe")
 public class Recipe {
+    @Id
     private String name;
+    @Field("desc")
     private String description;
     private List<Ingredient> ingredients;
     private List<String> ingredientTags;
