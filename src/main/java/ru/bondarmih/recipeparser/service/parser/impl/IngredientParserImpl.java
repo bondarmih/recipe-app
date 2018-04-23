@@ -1,10 +1,10 @@
-package ru.bondarmih.recipeparser.service.impl;
+package ru.bondarmih.recipeparser.service.parser.impl;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Selector;
 import org.springframework.stereotype.Component;
-import ru.bondarmih.recipeparser.model.domain.Ingredient;
-import ru.bondarmih.recipeparser.service.ElementParser;
+import ru.bondarmih.recipeparser.data.domain.Ingredient;
+import ru.bondarmih.recipeparser.service.parser.IngredientParser;
 
 import java.util.Optional;
 
@@ -13,23 +13,27 @@ import java.util.Optional;
  */
 
 @Component
-public class IngredientElementParser implements ElementParser<Ingredient> {
+public class IngredientParserImpl implements IngredientParser {
     @Override
     public Ingredient parse(Element element) {
         Ingredient ingredient = new Ingredient();
-        ingredient.setName(Selector.selectFirst(".list_label .name", element).text());
+        ingredient.setName(
+                Optional.ofNullable(Selector.selectFirst(".name", element))
+                        .map(Element::text)
+                        .orElse(null)
+        );
         ingredient.setNotes(
-                Optional.ofNullable(Selector.selectFirst(".list_label .notes", element))
+                Optional.ofNullable(Selector.selectFirst(".notes", element))
                         .map(Element::text)
                         .orElse(null)
         );
         ingredient.setValue(
-                Optional.ofNullable(Selector.selectFirst(".list_value .value", element))
+                Optional.ofNullable(Selector.selectFirst(".value", element))
                         .map(Element::text)
                         .orElse(null)
         );
         ingredient.setUnit(
-                Optional.ofNullable(Selector.selectFirst(".list_value .type", element))
+                Optional.ofNullable(Selector.selectFirst(".type", element))
                         .map(Element::text)
                         .orElse(null)
         );

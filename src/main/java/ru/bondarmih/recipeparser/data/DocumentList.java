@@ -1,6 +1,6 @@
-package ru.bondarmih.recipeparser.model;
+package ru.bondarmih.recipeparser.data;
 
-import ru.bondarmih.recipeparser.model.domain.RecipeSource;
+import ru.bondarmih.recipeparser.data.domain.RecipeSource;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.bondarmih.recipeparser.model.domain;
+package ru.bondarmih.recipeparser.data.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,7 +18,7 @@ public class Recipe {
     private String description;
     private List<Ingredient> ingredients;
     private List<String> ingredientTags;
-    private List<String> instructions;
+    private List<Instruction> instructions;
     private String imgPath;
     private List<String> notes;
 
@@ -54,11 +54,11 @@ public class Recipe {
         this.ingredientTags = ingredientTags;
     }
 
-    public List<String> getInstructions() {
+    public List<Instruction> getInstructions() {
         return instructions;
     }
 
-    public void setInstructions(List<String> instructions) {
+    public void setInstructions(List<Instruction> instructions) {
         this.instructions = instructions;
     }
 

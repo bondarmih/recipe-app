@@ -8,3 +8,4 @@ spring:
       ddl-auto: create
 recipelist:
   basePath: http://vkuso.ru/recipes/
+  lastPage: 408

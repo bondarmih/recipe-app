@@ -1,4 +1,4 @@
-package ru.bondarmih.recipeparser.service;
+package ru.bondarmih.recipeparser.service.parser;
 
 import org.jsoup.nodes.Document;
 

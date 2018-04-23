@@ -1,13 +1,13 @@
-package ru.bondarmih.recipeparser.service.impl;
+package ru.bondarmih.recipeparser.service.parser.impl;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.jsoup.select.Selector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.bondarmih.recipeparser.model.domain.RecipeSource;
-import ru.bondarmih.recipeparser.service.DocumentProvider;
-import ru.bondarmih.recipeparser.service.ElementParser;
+import ru.bondarmih.recipeparser.data.domain.RecipeSource;
+import ru.bondarmih.recipeparser.service.parser.DocumentProvider;
+import ru.bondarmih.recipeparser.service.parser.RecipeSourceParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class RecipeListProcessor {
     private DocumentProvider documentProvider;
 
     @Autowired
-    private ElementParser<RecipeSource> parser;
+    private RecipeSourceParser parser;
 
     public List<RecipeSource> process(String path) {
         List<RecipeSource> sources = new ArrayList<>();

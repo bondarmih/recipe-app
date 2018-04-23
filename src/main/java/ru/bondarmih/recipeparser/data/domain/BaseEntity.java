@@ -1,4 +1,4 @@
-package ru.bondarmih.recipeparser.model.domain;
+package ru.bondarmih.recipeparser.data.domain;
 
 import javax.persistence.*;
 import java.util.UUID;

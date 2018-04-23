@@ -1,4 +1,4 @@
-package ru.bondarmih.recipeparser.service;
+package ru.bondarmih.recipeparser.service.parser;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,6 +8,6 @@ import org.jsoup.nodes.Element;
  */
 public interface ElementParser<T> {
 
-    T parse(Element document);
+    T parse(Element element);
 
 }

@@ -1,10 +1,6 @@
-package ru.bondarmih.recipeparser.model.domain;
+package ru.bondarmih.recipeparser.data.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * Created by bondarm on 17.04.18.

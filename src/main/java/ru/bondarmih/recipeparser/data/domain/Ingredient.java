@@ -1,4 +1,4 @@
-package ru.bondarmih.recipeparser.model.domain;
+package ru.bondarmih.recipeparser.data.domain;
 
 /**
  * Created by bondarm on 18.04.18.

@@ -1,28 +1,9 @@
 package ru.bondarmih.recipeparser;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Selector;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.http.HttpMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.reactive.function.client.WebClient;
-import ru.bondarmih.recipeparser.model.domain.Ingredient;
-import ru.bondarmih.recipeparser.model.domain.Recipe;
-import ru.bondarmih.recipeparser.service.DocumentProvider;
-import ru.bondarmih.recipeparser.service.RecipesParser;
-import ru.bondarmih.recipeparser.service.impl.RecipeElementParser;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import ru.bondarmih.recipeparser.service.parser.RecipesParser;
 
 @SpringBootApplication
 public class RecipeParserApplication {

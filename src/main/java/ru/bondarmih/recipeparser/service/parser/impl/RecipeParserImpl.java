@@ -1,17 +1,15 @@
-package ru.bondarmih.recipeparser.service.impl;
+package ru.bondarmih.recipeparser.service.parser.impl;
 
-import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Selector;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
-import ru.bondarmih.recipeparser.model.domain.Ingredient;
-import ru.bondarmih.recipeparser.model.domain.Recipe;
-import ru.bondarmih.recipeparser.service.ElementParser;
+import ru.bondarmih.recipeparser.data.domain.Ingredient;
+import ru.bondarmih.recipeparser.data.domain.Instruction;
+import ru.bondarmih.recipeparser.data.domain.Recipe;
+import ru.bondarmih.recipeparser.service.parser.ElementParser;
+import ru.bondarmih.recipeparser.service.parser.RecipeParser;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -19,10 +17,13 @@ import java.util.stream.Collectors;
  * Created by bondarm on 17.04.18.
  */
 @Component
-public class RecipeElementParser implements ElementParser<Recipe> {
+public class RecipeParserImpl implements RecipeParser {
 
     @Autowired
     private ElementParser<Ingredient> ingredientParser;
+
+    @Autowired
+    private ElementParser<Instruction> instructionParser;
 
     @Override
     public Recipe parse(Element post) {
@@ -47,7 +48,10 @@ public class RecipeElementParser implements ElementParser<Recipe> {
         );
         recipe.setIngredientTags(Selector.select(".ingredient_tags",post).eachText());
         recipe.setInstructions(
-                Selector.select("[itemprop=recipeInstructions] .instruction_description",post).eachText()
+                Selector.select("[itemprop=recipeInstructions] li",post)
+                        .stream()
+                        .map(e -> instructionParser.parse(e))
+                        .collect(Collectors.toList())
         );
 
         recipe.setImgPath(

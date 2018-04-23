@@ -13,14 +13,18 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties("recipelist")
 public class PathsConfiguration {
-
-    public static final int LAST_PAGE = 10;
-    String basePath;
+    private Integer[] broken = {103, 218};
+    public static final int FIRST_INDEXED_PAGE = 354;
+    private Integer lastPage;
+    private String basePath;
 
     public List<String> getPaths() {
         List<String> paths = new ArrayList<>();
         paths.add(basePath);
-        for (int i = 2; i <= LAST_PAGE; i++) {
+        if (lastPage == null || lastPage <= FIRST_INDEXED_PAGE) {
+            return paths;
+        }
+        for (int i = FIRST_INDEXED_PAGE; i <= lastPage; i++) {
             paths.add(basePath + String.format("/page/%d/", i));
         }
         return paths;
@@ -28,5 +32,9 @@ public class PathsConfiguration {
 
     public void setBasePath(String basePath) {
         this.basePath = basePath;
+    }
+
+    public void setLastPage(Integer lastPage) {
+        this.lastPage = lastPage;
     }
 }
