@@ -1,6 +1,7 @@
 package ru.bondarmih.recipeparser.service.parser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 import ru.bondarmih.recipeparser.config.PathsConfiguration;
 import ru.bondarmih.recipeparser.data.domain.Recipe;

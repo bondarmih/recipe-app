@@ -13,8 +13,9 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties("recipelist")
 public class PathsConfiguration {
+    //TODO move to properties
     private Integer[] broken = {103, 218};
-    public static final int FIRST_INDEXED_PAGE = 354;
+    public static final int FIRST_INDEXED_PAGE = 407;
     private Integer lastPage;
     private String basePath;
 

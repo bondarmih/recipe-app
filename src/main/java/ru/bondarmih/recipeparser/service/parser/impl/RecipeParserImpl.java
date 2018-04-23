@@ -8,8 +8,11 @@ import ru.bondarmih.recipeparser.data.domain.Ingredient;
 import ru.bondarmih.recipeparser.data.domain.Instruction;
 import ru.bondarmih.recipeparser.data.domain.Recipe;
 import ru.bondarmih.recipeparser.service.parser.ElementParser;
+import ru.bondarmih.recipeparser.service.parser.IngredientParser;
+import ru.bondarmih.recipeparser.service.parser.InstructionParser;
 import ru.bondarmih.recipeparser.service.parser.RecipeParser;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -20,10 +23,10 @@ import java.util.stream.Collectors;
 public class RecipeParserImpl implements RecipeParser {
 
     @Autowired
-    private ElementParser<Ingredient> ingredientParser;
+    private IngredientParser ingredientParser;
 
     @Autowired
-    private ElementParser<Instruction> instructionParser;
+    private InstructionParser instructionParser;
 
     @Override
     public Recipe parse(Element post) {
@@ -48,10 +51,9 @@ public class RecipeParserImpl implements RecipeParser {
         );
         recipe.setIngredientTags(Selector.select(".ingredient_tags",post).eachText());
         recipe.setInstructions(
-                Selector.select("[itemprop=recipeInstructions] li",post)
-                        .stream()
+                Optional.ofNullable(Selector.selectFirst("[itemprop=recipeInstructions]",post))
                         .map(e -> instructionParser.parse(e))
-                        .collect(Collectors.toList())
+                        .orElse(null)
         );
 
         recipe.setImgPath(
