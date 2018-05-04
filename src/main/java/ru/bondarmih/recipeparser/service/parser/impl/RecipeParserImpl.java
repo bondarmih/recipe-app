@@ -28,6 +28,9 @@ public class RecipeParserImpl implements RecipeParser {
     @Autowired
     private InstructionParser instructionParser;
 
+    @Autowired
+    private ImgPersister imgPersister;
+
     @Override
     public Recipe parse(Element post) {
         Recipe recipe = new Recipe();
@@ -61,6 +64,7 @@ public class RecipeParserImpl implements RecipeParser {
                     .map(e -> e.attr("src"))
                     .orElse(null)
         );
+        imgPersister.loadAndPersist(recipe.getImgPath());
         recipe.setNotes(Selector.select(".directionsFootnotes>p",post).eachText());
         return recipe;
     }

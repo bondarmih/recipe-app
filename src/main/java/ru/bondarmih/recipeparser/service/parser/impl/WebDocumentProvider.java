@@ -2,6 +2,8 @@ package ru.bondarmih.recipeparser.service.parser.impl;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -15,11 +17,12 @@ import ru.bondarmih.recipeparser.service.parser.DocumentProvider;
 @Component
 public class WebDocumentProvider implements DocumentProvider {
 
+    @Autowired
+    @Qualifier("mainWebClient")
+    private WebClient client;
+
     @Override
     public Document getDocument(String path) {
-        WebClient client = WebClient.builder()
-                .baseUrl("http://vkuso.ru")
-                .build();
 
         WebClient.RequestBodySpec uri = client
                 .method(HttpMethod.GET)

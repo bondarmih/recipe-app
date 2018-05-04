@@ -20,7 +20,7 @@ public class ImageDescriptor {
     private String path;
 
     @Column
-    private Byte[] data;
+    private byte[] data;
 
     public Long getId() {
         return id;
@@ -38,11 +38,11 @@ public class ImageDescriptor {
         this.path = path;
     }
 
-    public Byte[] getData() {
+    public byte[] getData() {
         return data;
     }
 
-    public void setData(Byte[] data) {
+    public void setData(byte[] data) {
         this.data = data;
     }
 }

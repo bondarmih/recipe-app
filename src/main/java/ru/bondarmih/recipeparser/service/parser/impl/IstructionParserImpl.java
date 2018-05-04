@@ -2,6 +2,7 @@ package ru.bondarmih.recipeparser.service.parser.impl;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Selector;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.bondarmih.recipeparser.data.domain.Instruction;
 import ru.bondarmih.recipeparser.service.parser.InstructionParser;
@@ -17,6 +18,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class IstructionParserImpl implements InstructionParser {
+
+    @Autowired
+    private ImgPersister imgPersister;
 
     @Override
     public List<Instruction> parse(Element element) {
@@ -43,11 +47,12 @@ public class IstructionParserImpl implements InstructionParser {
                         .map(Element::text)
                         .orElse(null)
         );
-        instruction.setImgPath(
-                Optional.ofNullable(Selector.selectFirst(".instruction_image>a", element))
-                        .map(e -> e.attr("src"))
-                        .orElse(null)
-        );
+        Optional.ofNullable(Selector.selectFirst(".instruction_image>a", element))
+                .map(e -> e.attr("src"))
+                .ifPresent(path -> {
+                    instruction.setImgPath(path);
+                    imgPersister.loadAndPersist(path);
+                });
         return instruction;
     }
 
